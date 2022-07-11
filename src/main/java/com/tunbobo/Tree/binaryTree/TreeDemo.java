@@ -226,41 +226,65 @@ public class TreeDemo {
             //Else the current node has two children
             //move the largest node of the right branch to the position of parent.right   + move the largest node of the left branch  to the position of parent.left
             else {
-                Node rightNodeParent = findRight(current);
-                Node rightNode = moveRight(rightNodeParent);
-
-                //connect left side to the rightNode, also known as successor
-                rightNode.left = current.left;
-
-                //connect to the parent node
-                parent.right = rightNode;
-
+//                Node rightNodeParent = findRight(current);
+//                Node rightNode = moveRight(rightNodeParent);
+//
+//                //connect left side to the rightNode, also known as successor
+//                rightNode.left = current.left;
+//                rightNode.right = current.right;
+//
+//                //connect to the parent node
+//                parent.right = rightNode;
+                Node successor = getSuccessor(current);
+                if (current == head) {
+                    head = successor;
+                }
+                else if(isLeft) {
+                    parent.left = successor;
+                }
+                else {
+                    parent.right = successor;
+                }
+                successor.left = current.left;
             }
             return true;
             }
         }
 
-
-        public static Node findRight(Node current) {
-            Node rightNode = current.right;
-            Node parent = current;
-            while(rightNode.left!=null) {
-                parent = rightNode;
-                rightNode = rightNode.left;
-            }
-            return parent;
+    private static Node getSuccessor(Node current) {
+        Node successorParent = current;
+        Node successor = current.right;
+        Node rightChildOfSuccessor = null;
+        while(successor.left!=null) {
+            successorParent = successor;
+            successor = successor.left;
         }
+        
+        rightChildOfSuccessor = successor.right;
+        successorParent.left = rightChildOfSuccessor;
+        successor.right = successorParent;
+        return successor;
+    }
 
-        public static Node moveRight(Node parent) {
-        //move the child of target right node to left
-            Node RightNode = parent.left;
-            Node RightChildOfRight = RightNode.right;
-            //move the right node of target right node to its left side
-            parent.left = RightChildOfRight;
-            RightNode.right = parent;
 
-            return RightNode;
-            }
+//        public static Node findRight(Node current) {
+//            Node rightNode = current.right;
+//            Node parent = current;
+//            while(rightNode.left!=null) {
+//                parent = rightNode;
+//                rightNode = rightNode.left;
+//            }
+//            return parent;
+//        }
+//
+//        public static Node moveRight(Node parent) {
+//        //move the child of target right node to left
+//            Node RightNode = parent.left;
+//            Node RightChildOfRight = RightNode.right;
+//            //move the right node of target right node to its left side
+//            parent.left = RightChildOfRight;
+//            return RightNode;
+//            }
 
 
 }
