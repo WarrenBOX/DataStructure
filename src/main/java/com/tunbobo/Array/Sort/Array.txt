@@ -1,0 +1,7 @@
+1. Array的泛型
+https://www.baeldung.com/java-generic-array
+
+
+2. 排序算法：
+2.1 冒泡排序： 嵌套循环for， 遍历过程中两两比较，每一次执行将最大数上浮一层
+2.2 快速排序

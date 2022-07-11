@@ -1,0 +1,25 @@
+HashMap: k v pairs
+
+1. definition:
+key value pairs, key refers to a specific memory location (after hashing)
+
+2. key components
+*2.1 Hash function: function that convert content of key into numbers
+* criteria: 1)fast to compute
+            2)avoid collisions
+            3)uniformed distributed
+
+*2.2 Collision:
+* 1) chaining: array + linkedList
+     insert: O(1)
+     search: O(1 + a) :  a = 链表内总结点数量/ Array的格子总数
+* 2) linear probing: 冲撞后找相邻的空缺格子
+* 2.1） Double Hashing:
+    step: i = h1(key) mod 8 // i 最初的index
+          (i+c) mod 8
+          (i+2c) mod 8   // c 是挑选的特别的数字
+    principle:
+          gcd(c,m)   //the greatest common divider, m: the length of the array
+3. Big O
+*time: O(1)
+*space:

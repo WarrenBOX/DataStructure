@@ -1,0 +1,2 @@
+一、 String & Array
+1. 套路一：String -> char -> Array(把字符存进array)

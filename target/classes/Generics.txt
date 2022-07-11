@@ -1,0 +1,23 @@
+link:https://blog.csdn.net/u014513883/article/details/49820569
+总结： 泛型通配符 -》 保证类型安全
+
+1. <? extends E>
+        -> upper Bound Wildcard -> 限制元素类型的上限：
+        example: List< ? extends Fruit> fruits; -> 集合中的元素类型上限为fruit类型
+
+1.1 < ? > == <? extends Object>
+
+     ** 1）写入： <? extends E> 告诉编译器类型的上限， fruits 可以指向ArrayList<Fruit>， 也可以指向ArrayList<Apple> -》 类型不确定，为了类型安全，不可以写入
+
+2. < ? super E> : super 引用父类对象
+       -> lower bound wildcard -> 限制元素类型的下限 -》 只能是E或E的父类
+
+       List<? super Apple> apples;
+       apples = new ArrayList<Apple>();
+       apples = new ArrayList<Fruit>();
+       apples = new ArrayList<Object>();
+
+    ** 1)写入: apples中装的元素和这个不确定的父类是兼容的， 可以添加
+    apples.add(new Apple());
+
+
