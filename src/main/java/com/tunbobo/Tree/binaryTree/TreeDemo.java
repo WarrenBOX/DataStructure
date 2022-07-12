@@ -252,19 +252,25 @@ public class TreeDemo {
         }
 
     private static Node getSuccessor(Node current) {
-        Node successorParent = current;
-        Node successor = current.right;
-        Node rightChildOfSuccessor = null;
-        while(successor.left!=null) {
+//        Node successorParent = current;
+//        Node successor = current.right;
+//        Node rightChildOfSuccessor = null;
+        Node successor = null;
+        Node successorParent = null;
+        Node currentPointer = current.right;
+        while(currentPointer!=null) {
             successorParent = successor;
-            successor = successor.left;
+            successor = currentPointer;
+            currentPointer = currentPointer.left;
         }
-        
-        rightChildOfSuccessor = successor.right;
-        successorParent.left = rightChildOfSuccessor;
-        successor.right = successorParent;
+        if (successor != current.right) {
+
+            successorParent.left = successor.right;
+            successor.right = current.right;
+        }
         return successor;
     }
+
 
 
 //        public static Node findRight(Node current) {
