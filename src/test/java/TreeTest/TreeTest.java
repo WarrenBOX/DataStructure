@@ -24,11 +24,11 @@ public class TreeTest {
         tree.add(4);
         tree.add(8);
         tree.add(7);
-        tree.add(9);
-        tree.add(11);
+        tree.add(15);
+        tree.add(19);
         tree.add(5);
-        tree.add(2);
-        tree.add(3);
+        tree.add(12);
+        tree.add(13);
         tree.add(6);
         System.out.println(tree);
 

@@ -251,22 +251,37 @@ public class TreeDemo {
             }
         }
 
-    private static Node getSuccessor(Node current) {
+    private static Node getSuccessor(Node node) {
 //        Node successorParent = current;
 //        Node successor = current.right;
 //        Node rightChildOfSuccessor = null;
-        Node successor = null;
-        Node successorParent = null;
-        Node currentPointer = current.right;
-        while(currentPointer!=null) {
-            successorParent = successor;
-            successor = currentPointer;
-            currentPointer = currentPointer.left;
-        }
-        if (successor != current.right) {
+//        Node successor = null;
+//        Node successorParent = null;
+//        Node currentPointer = current.right;
+        /**三段快慢指针写法，慢指针等于快指针，快指针等于更快指针，**/
+//        while(currentPointer!=null) {
+//            successorParent = successor;
+//            successor = currentPointer;
+//            currentPointer = currentPointer.left;
+//        }
+//        if (successor != current.right) {
+//
+//            successorParent.left = successor.right;
+//            successor.right = current.right;
+//        }
+//        return successor;
+        //parent node is used for reconnecting the node with second least
+        Node successorParent = node;
+        Node successor = successorParent.right;
 
+        while(successor.left!=null) {
+            successorParent = successor;
+            successor = successor.left;
+        }
+        // if successor is on left branch of the node after current node
+        if (node.right!=successor) {
             successorParent.left = successor.right;
-            successor.right = current.right;
+            successor.right = node.right;
         }
         return successor;
     }
