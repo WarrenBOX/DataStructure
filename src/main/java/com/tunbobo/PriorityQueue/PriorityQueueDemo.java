@@ -44,4 +44,36 @@ public class PriorityQueueDemo {
         current.next = newNode;
         }
 
+
+        /**peak: check the node with the highest priority
+         * @parameter:
+         * return type: Node
+         * **/
+        public Node peak() {
+            return head;
+        }
+
+        /**pop: delete the node with highest priority
+         * @para:
+         * return type: Node
+         * **/
+
+        public Node pop() {
+            //if the queue is empty
+            if (head == null) {
+                return null;
+            }
+            //set a pointer to the head node
+            Node temp = head;
+            //move head pointer to the node next to head
+            head = head.next;
+            return temp;
+        }
+
+        /**isEmpty: check if the queue is empty**/
+        public boolean isEmpty() {
+            return head==null;
+        }
+
+
 }
