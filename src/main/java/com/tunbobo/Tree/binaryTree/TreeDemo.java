@@ -308,4 +308,18 @@ public class TreeDemo {
 //            }
 
 
+    /**Iterate over the tree
+     * in-order traversal:start from left child ,then node, then right child
+     * **/
+    public void inorderTraverse(Node node) {
+        if(node == null) {
+            return;
+        }
+        inorderTraverse(node.left);
+        System.out.println(node.value);
+        inorderTraverse(node.right);
+
+
+    }
+
 }
