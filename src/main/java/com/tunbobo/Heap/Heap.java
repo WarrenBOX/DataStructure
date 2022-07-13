@@ -5,11 +5,11 @@ import java.util.Arrays;
 public class Heap {
 
     /**generate heap with array**/
-    int[] array;
+    private int[] array;
 //    int root : no need. coz array has index as pointer
-    int capacity;
+    private int capacity;
     //record how many items have been inserted into the heap
-    int size = 0;
+    private int size = 0;
 
     // constructor: max heap is an array that contains data in a designed format
     public Heap(int length) {
@@ -45,7 +45,7 @@ public class Heap {
         //stops until it reaches the head of the array && value of parent node is less than the new node
         while(indexOfParentNode >= 0 && array[indexOfParentNode] < array[index]) {
             // swap the value within the index position with node
-            swap(array,array[indexOfParentNode],array[index]);
+            swap(array,indexOfParentNode,index);
             // index pointer points to the position of its parentNode
             index = indexOfParentNode;
         };
@@ -57,10 +57,16 @@ public class Heap {
 
     public void swap(int[] array, int i, int j) {
         int temp = array[i];
-        i = array[j];
+        array[i] = array[j];
         array[j] = temp;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Heap{" +
+                "array=" + Arrays.toString(array) +
+                ", capacity=" + capacity +
+                ", size=" + size +
+                '}';
+    }
 }
