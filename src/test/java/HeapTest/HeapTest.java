@@ -15,5 +15,8 @@ public class HeapTest {
         heap.insert(2);
         heap.insert(6);
         System.out.println(heap);
+
+        heap.pop();
+        System.out.println(heap);
     }
 }
