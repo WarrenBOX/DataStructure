@@ -1,5 +1,7 @@
 package com.tunbobo.Stack;
 
+import java.util.NoSuchElementException;
+
 public class StackList {
     //stack list
     //meta information to describe the data structure: Node: int value, Node next ; Top
@@ -46,6 +48,36 @@ public class StackList {
         }
     }
 
+    /**pop: remove the element**/
+    public int pop() {
+        //check if the stack is empty
+        if (top == null) {
+            throw new NoSuchElementException("stack underflow");
+        }
+        // if it is not empty
+        else {
+            //temporary pointer to where the top is
+            int poped = top.value;
+            //assign top to the node next to the top node
+            top = top.next;
+            //return the value of temp node
+            return poped;
+        }
+    }
+
+    /**peek: check the value of top**/
+    public int peek() {
+        if (top == null) {
+            System.out.println("stack is empty");
+            return Integer.MIN_VALUE;
+        }
+        return top.value;
+    }
+
+    /**isEmpty: check if the stack is empty**/
+    public boolean isEmpty() {
+        return top == null;
+    }
 
     @Override
     public String toString() {
