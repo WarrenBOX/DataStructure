@@ -29,26 +29,21 @@ public class StackList {
      *
      *
      * params: value
-     * return: true
+     * return: void
      * **/
-    public boolean push(int value) {
+    public void push(int value) {
         //create a new node
         Node newNode = new Node(value);
-
         //check if the stack is empty
         if (top == null) {
             top = newNode;
         }
-        //if node exists, insert it after the top
-
-//        // change the direction of the pointer
-//        newNode.next = top;
-//        // ****************stack over flow ->
-//        top = newNode;
-        Node temp = top;
-        top = newNode;
-        newNode.next = temp;
-        return true;
+        else {
+            //if node exists, insert it after the top
+            newNode.next = top;
+            // ****************stack over flow ->  mistaken missed the else statement
+            top = newNode;
+        }
     }
 
 

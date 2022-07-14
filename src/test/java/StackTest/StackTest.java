@@ -12,5 +12,7 @@ public class StackTest {
         stack.push(8);
         System.out.println(stack);
         System.out.println(stack.top.next);
+        System.out.println(stack.top.next.next);
+        System.out.println(stack.top.next.next.next);
     }
 }
