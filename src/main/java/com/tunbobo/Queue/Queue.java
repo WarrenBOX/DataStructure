@@ -77,6 +77,15 @@ public class Queue {
 
     /**isFull: check if the size exceed the capacity**/
     private boolean isFull() {
-        return size >= capacity;
+        return size == capacity;
+    }
+
+    /**peek: check the front value**/
+    public int peek() {
+        //check if the queue is empty
+        if (isEmpty()) {
+            return Integer.MIN_VALUE;
+        }
+        return queue[front];
     }
 }
