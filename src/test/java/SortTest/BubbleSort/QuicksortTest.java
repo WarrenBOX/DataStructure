@@ -26,11 +26,11 @@ public class QuicksortTest {
         int pivot = left;
         //put the pivot to the position of right side to make the comparison easier
         swap(array,pivot,right);
-        //the first element is already in order
+        // j pointer should start from left, rather than left+1, otherwise we will miss the swap, when arr[i] < pivot value and arr[j] > pivot value
 //        int j = left;
         int i = left;
         //stops when the element from left to right-1 has been traversed
-        for (int j = left+1; j <= right;j++) {
+        for (int j = left; j <= right;j++) {
             //use slow and quick pointer to partition the array into three parts, 0 - i: less than value of pivot
 //                         +++
 //            +++          + +        ----
