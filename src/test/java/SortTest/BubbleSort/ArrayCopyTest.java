@@ -16,7 +16,8 @@ public class ArrayCopyTest {
         int m = (l+r)/2;
         int[] left = Arrays.copyOfRange(arr,l,m);
         int[] right = Arrays.copyOfRange(arr,m,r);
-        int[] copy = Arrays.copyOfRange(arr,l,arr.length);
+        int rightindex = arr.length-1;
+        int[] copy = Arrays.copyOfRange(arr,l,rightindex+1);
         System.out.println(Arrays.toString(copy));
         System.out.println(Arrays.toString(left));
 
