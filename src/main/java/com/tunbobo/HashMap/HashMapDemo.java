@@ -79,7 +79,42 @@ public class HashMapDemo{
             }
         }
         return winner;
-    }}
+    }
+
+
+    public static String optimize(ArrayList<ArrayList<String>> competitions, ArrayList<Integer> results){
+            //create a map to store team and score
+        HashMap<String,Integer> map = new HashMap<String,Integer>();
+
+        //create a container to store the current highest score
+        String highest = "";
+        //initialize the round
+        int round = 1;
+
+        //after each competition, add the winner into the map, and its score
+        for (ArrayList<String> competition : competitions) {
+            //create winner and score to store data
+            String winner;
+
+            //iterate over the results
+            int result = results.get(round-1);
+
+            //use ? : to get the winner
+            winner = result ==0? competition.get(1):competition.get(0);
+
+            //put winner and score into a map, getOrDefault -> return the value or if the key x exist, return the default value
+            map.put(winner,map.getOrDefault(winner,0)+3);
+
+            //return the team with the highest score
+            highest = map.getOrDefault(highest,0) > map.get(winner)? highest:winner;
+
+            round++;
+        }
+            return highest;
+    }
+
+
+}
 
 
 
@@ -87,5 +122,9 @@ public class HashMapDemo{
 //problems:
 //1.for each loop format -> iterate key of map -> for (Type collection :collections)
 //2. add elements to map -> map.put(k,v)
-//3. bug -> add score,should add to origin score
+//3. bug -> add score,should add to origin score ->
 //4. overwrite the result each iteration : renew score to 0
+
+// O(N) time com + O(k) time
+//optimize -> reduce the need to iterate over a whole map, after iteration of the competition, return the result
+
