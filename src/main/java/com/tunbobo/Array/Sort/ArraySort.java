@@ -23,5 +23,11 @@ public class ArraySort {
         System.out.println(Arrays.toString(array2));
 
         System.out.println(Arrays.toString(heapSort(array)));
+
+
+
+        int[] arr = new int[] {2,5,1,5,1};
+        Arrays.sort(arr);
+        System.out.println(Arrays.toString(arr));
     }
 }
