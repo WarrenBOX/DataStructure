@@ -6,26 +6,26 @@ public class ProductSum {
     /**version1:
      * problem: input is List, not [] -> should use list.get(i)
      * **/
-    public static int productSum(List<Object> array) {
-        // Write your code here.
-        //recursion -> intuitive
-        int layer = 1;
-        int sum = 0;
-        for (int i = 0; i < array.length; i++) {
-            //if it is an integer, add it to sum
-            if (! (array[i] instanceof List<Object>)) {
-                sum += array[i];
-            }
-      else {
-          //layer should be passed into a function, or it would be reset to 1 when recursion
-                layer += 1;
-                int add = productSum((array[i])*(layer));
-                sum += add;
-            }
-            layer = 1;
-        }
-        return sum;
-    }
+//    public static int productSum(List<Object> array) {
+//        // Write your code here.
+//        //recursion -> intuitive
+//        int layer = 1;
+//        int sum = 0;
+//        for (int i = 0; i < array.length; i++) {
+//            //if it is an integer, add it to sum
+//            if (! (array[i] instanceof List<Object>)) {
+//                sum += array[i];
+//            }
+//      else {
+//          //layer should be passed into a function, or it would be reset to 1 when recursion
+//                layer += 1;
+//                int add = productSum((array[i])*(layer));
+//                sum += add;
+//            }
+//            layer = 1;
+//        }
+//        return sum;
+//    }
 
 
 
