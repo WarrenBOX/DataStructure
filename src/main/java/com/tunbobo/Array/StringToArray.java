@@ -36,6 +36,7 @@ public class StringToArray {
             //          store data: iterate over String -
             // retrieve the fastest -> Array -> Array[] {a.b.c.d.e.....,z} -> a,
             //
+
             for (int i = 0; i < s.length(); i++) {
                 char c = s.charAt(i);
             }
