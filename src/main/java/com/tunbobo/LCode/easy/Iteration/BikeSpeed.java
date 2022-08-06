@@ -37,7 +37,7 @@ public class BikeSpeed {
     /**version 2 :
      * method: iteration array + condition check (condition? value1 : value2)
      *
-     * improved: simply code using ? : 
+     * improved: simply code using ? :
      * **/
     public int tandemBicycle2(int[] redShirtSpeeds, int[] blueShirtSpeeds, boolean fastest) {
         // Write your code here.
