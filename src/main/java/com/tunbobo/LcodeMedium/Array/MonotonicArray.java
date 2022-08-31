@@ -1,6 +1,11 @@
 package com.tunbobo.LcodeMedium.Array;
 
 public class MonotonicArray {
+    /**version 1 :
+     * process: determine whether it is ascending -> iteration and check condition
+     * methods: iteration
+     *
+     * **/
     public static boolean isMonotonic(int[] array) {
         // Write your code here.
         //intuitive: traverse the arr, and compare elements, if the next is less or great , keep track
@@ -30,6 +35,35 @@ public class MonotonicArray {
             }
         }
 
+        return true;
+    }
+
+
+    /**version2:
+     * methods: iteration + condition check
+     *
+     * improved: define isDecreasing condition before loop, corner case
+     * **/
+    public static boolean isMonotonic2(int[] array) {
+        // Write your code here.
+        //improvement: -> check if decreasing
+        //1. corner case
+        if (array.length <= 1) {
+            return true;
+        }
+
+        //2. determine descending
+        boolean isDecreasing = array[0] > array[array.length-1];
+
+        //3. iterate over the array
+        for (int i = 0; i < array.length-1; i++) {
+            if (isDecreasing && array[i] < array[i+1]) {
+                return false;
+            }
+            if (!isDecreasing && array[i] > array[i+1]) {
+                return false;
+            }
+        }
         return true;
     }
 
