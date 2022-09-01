@@ -93,6 +93,98 @@ public class HeapCons {
                 heapifyDown(heap,size,min);
             }
         }
+        
+        public void siftDown(int currentIdx, int endIdx, List<Integer> heap) {
+            // Write your code here.
+            // from top to bottom, deal with half tree
+            //1. base base
+            if (currentIdx >= endIdx) {
+                return;
+            }
+
+            //2. find the left and right child
+            int left = 2*currentIdx+1;
+            int right = 2*currentIdx+2;
+            int min = currentIdx;
+
+            //3. compare
+            if (left <= endIdx && heap.get(left) < heap.get(currentIdx)) {
+                min = left;
+            }
+
+            if (right <= endIdx && heap.get(right) < heap.get(min)) {
+                min = right;
+            }
+
+            //3.1 swap
+            if (min!=currentIdx) {
+                swap((ArrayList<Integer>)heap,min,currentIdx);
+                //3.2 siftdown
+                siftDown(min,endIdx,heap);
+            }
+        }
+
+        public void siftUp(int currentIdx, List<Integer> heap) {
+            // Write your code here.
+            //deal with the node that has been swapped -> half tree
+            //1. recursion method: start from bottom, end til it reaches its top
+            if (currentIdx == 0) {
+                return;
+            }
+
+            //2. start from bottom and find parentNode
+            int parentIdx = (currentIdx-1)/2;
+            // 2.1 compare it with left and right leaf
+            int leftChild = 2*parentIdx +1;
+            int rightChild = 2*parentIdx+2;
+            int min = parentIdx;
+            //2.2.compare
+            if (leftChild < heap.size() && heap.get(leftChild) < heap.get(parentIdx) ) {
+                min = leftChild;
+            }
+            if (rightChild < heap.size() && heap.get(rightChild) < heap.get(min)) {
+                min = rightChild;
+            }
+            //if has swaped
+            if (min != parentIdx) {
+                swap((ArrayList<Integer>)heap,min,parentIdx);
+                siftUp(parentIdx,heap);
+            }
+        }
+
+        public int peek() {
+            // Write your code here.
+            //peek: return the value of the top
+            //1. check if the heap is empty
+            if (heap.size() == 0) {
+                return -1;
+            }
+            return heap.get(0);
+        }
+
+        public int remove() {
+            // Write your code here.
+            //if the heap is empty
+            if (heap.size() == 0) {
+                return -1;
+            }
+
+            //1. put the last element to the top
+            int removed = heap.get(0);
+            swap((ArrayList<Integer>)heap,0,heap.size()-1);
+            //2. delete the last element
+            heap.remove(heap.size()-1);
+            //3. adjust heap
+            siftDown(0,heap.size()-1,heap);
+            return removed;
+        }
+
+        public void insert(int value) {
+            // Write your code here.
+            //insert to the bottom
+            heap.add(value);
+            siftUp(heap.size()-1, heap);
+        }
 
 
 
