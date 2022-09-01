@@ -14,6 +14,10 @@ public class HeapCons {
             heap = buildHeap(array);
         }
 
+        /**
+         * version1:
+         * problem: wrong logic ,
+         * **/
         public  static List<Integer> buildHeap(List<Integer> array) {
             // Write your code here.
             //build heap: node: i, leftChild : heap.get(2*i+1) , rightChild: heap.get(2*i+2)
@@ -40,6 +44,59 @@ public class HeapCons {
             return array;
         }
 
+        /**version2:
+         * improved: decompose the build of heap into two components: 将最大/小值上浮 + 递归地调整堆结构（从上到下）
+         *  variable used: heap + heap的size + 需要调整的结点的index
+         *  递归终止条件： 1. 结点没有被调整过 or 2. 到达边界
+         *  总结： 思路： 比较，且移动index到目标位置后再交换，
+         * **/
+        // construct heap two steps: 1. float the minimum value to the top: from bottom to top
+        //                           2. heapifyDown : adjust heap , follow node > leaf properties: from top to bottom , recursion
+        public static List<Integer> buildHeap1(List<Integer> heap) {
+            //1. start from the bottom
+            int firtstNode = ((heap.size()-1)-1)/2;
+            for (int i = firtstNode; i >=0 ; i--) {
+                //2. adjust heap
+                heapifyDown(heap, heap.size(), i);
+            }
+
+            return heap;
+        }
+
+        //2. adjust heap from specific point, recursion
+        public static void heapifyDown(List<Integer> heap, int size, int index) {
+            //2.1 base case: reach its bound
+            if (index >= size) {
+                return;
+            }
+
+            //2.2 locate left and right child
+            int leftChild = 2*index+1;
+            int rightChild = 2*index+2;
+
+            //2.3 record the min
+            int min = index;
+
+            //2.4 compare value and locate the index of min value
+            if (leftChild < size && heap.get(leftChild) < heap.get(index)) {
+                min = leftChild;
+            }
+
+            if (rightChild < size && heap.get(rightChild) < heap.get(min)) {
+                min = rightChild;
+            }
+
+            //2.5 swap value
+            if (index != min) {
+                Collections.swap(heap,min,index);
+                //2.6 *** heapify the node after swap
+                heapifyDown(heap,size,min);
+            }
+        }
+
+
+
+
         //version 1: can not swap, coz arraylist is a collection
         // solution: convert it into collections
         public static void swap(ArrayList<Integer> array, int i, int j) {
@@ -61,7 +118,7 @@ public class HeapCons {
             heap.add(6);
             heap.add(8);
             heap.add(41);
-            System.out.println(Arrays.toString(buildHeap(heap).toArray()));
+            System.out.println(Arrays.toString(buildHeap1(heap).toArray()));
         }
     }
 }
